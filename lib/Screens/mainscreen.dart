@@ -21,7 +21,7 @@ class _MainScreenState extends State<MainScreen> {
           Positioned(
               top: size.height * 0.1,
               child: Text(
-                'Location',
+                '${constants.apiInstance.city}',
                 style: TextStyle(
                   color: constants.textPrimary,
                   decoration: TextDecoration.none,
@@ -30,7 +30,7 @@ class _MainScreenState extends State<MainScreen> {
           Positioned(
               top: size.height * 0.16,
               child: Text(
-                'Date',
+                constants.apiInstance.date,
                 style: TextStyle(
                   color: constants.textPrimary,
                   decoration: TextDecoration.none,
@@ -39,15 +39,16 @@ class _MainScreenState extends State<MainScreen> {
               )),
           Positioned(
               top: size.height * 0.3,
-              child: Container(
+              child: SizedBox(
                 width: size.width * 0.6,
                 height: size.height * 0.23,
-                color: Colors.greenAccent,
+                child: Image.network('http://openweathermap.org/img/wn/${constants.apiInstance.icon}@2x.png'),
+                //color: Colors.greenAccent,
               )),
           Positioned(
             top: size.height * 0.6,
             child: Text(
-              '23°c',
+              '${constants.apiInstance.temp}°c',
               style: TextStyle(
                 fontSize: size.width * 0.16,
                 decoration: TextDecoration.none,
@@ -63,19 +64,19 @@ class _MainScreenState extends State<MainScreen> {
                   size: size,
                   icon: Icons.thermostat,
                   name: 'MaxTemp',
-                  value: '23°c',
+                  value: '${constants.apiInstance.maxTemp}°c',
                 ),
                 extraInfo(
                   size: size,
                   icon: Icons.air_outlined,
                   name: 'Windspeed',
-                  value: '2m/s',
+                  value: '${constants.apiInstance.airSpeed}',
                 ),
                 extraInfo(
                   size: size,
                   icon: Icons.percent,
                   name: 'Humidity',
-                  value: '23%',
+                  value: '${constants.apiInstance.humidity}%',
                 ),
               ],
             ),

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:weather/Network/Location.dart';
 import '../Components/textfield.dart';
 import '../Constants.dart' as constant;
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'mainscreen.dart';
+
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -15,9 +17,18 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   late String email, password;
-  int myvar = 1;
+  int myvar = 0;
 
   @override
+  void initState(){
+    super.initState();
+    apicall();}
+
+  void apicall()async{
+  var location=await determinePosition();
+  myvar=await constant.apiInstance.getLocation(location.latitude.toString(),location.longitude.toString());
+
+  }
   Widget build(BuildContext context) {
     final _auth = FirebaseAuth.instance;
     return Scaffold(
